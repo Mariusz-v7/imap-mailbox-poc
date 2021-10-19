@@ -1,0 +1,34 @@
+app:
+  configurations:
+    default:
+      enabled: true
+  mailboxes:
+    - connection:
+        user:
+        password:
+        folder: INBOX.INBOX.Sent
+        host: ssl0.ovh.net
+        port: 993
+        debug: false
+        ssl: true
+      receiver-settings:
+        mark-as-read: false
+        delete-messages: false
+        auto-close-folder: false
+      schedule:
+        cron: "0 * * * * *"
+        search-strategy: SENT_SINCE_LAST_MESSAGE
+#        search-strategy: EMAIL_FROM
+#        search-strategy-settings:
+#          email-from: example@gmail.com
+        handler: LOGGING_HANDLER
+#        handler-settings:
+        transformers:
+          -
+            transformer: TO_STRING
+#            settings:
+
+        filters:
+          -
+            filter: SENT_SINCE_LAST_MESSAGE
+#            settings:
